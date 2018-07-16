@@ -7,4 +7,3 @@ export default {
   name: 'recommend'
 }
 </script>
-
