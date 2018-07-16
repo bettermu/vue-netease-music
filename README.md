@@ -34,7 +34,7 @@
 
    * 完成项目框架的搭建，使用vue-cli脚手架进行搭建，vue-cli脚手架初始化项目结构
    * 添加懒加载默认图片
-   * main.js引入fastclick插件
+   * main.js引入fastclick等插件
    * webpack相关路径别名配置
    * 项目运行测试
 
