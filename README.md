@@ -1,27 +1,15 @@
 # netease-music
 
-> A Vue.js project
+一款使用vue全家桶开发的网易云音乐webapp
 
-## Build Setup
+# 项目运行
 
-``` bash
-# install dependencies
-npm install
+* git clone
+* npm install
+* npm run dev
 
-# serve with hot reload at localhost:8080
-npm run dev
+# 开发进度
 
-# build for production with minification
-npm run build
+* 2018.7.16  完成项目框架的搭建，使用vue-cli脚手架进行搭建
 
-# build for production and view the bundle analyzer report
-npm run build --report
 
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
