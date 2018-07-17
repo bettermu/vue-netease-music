@@ -1,5 +1,8 @@
 <template>
-  <div>我是rank</div>
+  <div>
+    <div>我是rank</div>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>

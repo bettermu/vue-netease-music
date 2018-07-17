@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/components/Index'
+// import Index from '@/components/Index'
 import Recommend from '@/components/recommend/recommend'
 import Singer from '@/components/singer/singer'
 import Rank from '@/components/rank/rank'
@@ -8,14 +8,16 @@ import Search from '@/components/search/search'
 import User from '@/components/user/user'
 import MusicList from '@/components/music-list/music-list'
 import SingerDetail from '@/components/singer-detail/singer-detail'
+import RankDetail from 'cpnts/rank-detail/rank-detail'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
+      // 默认跳转到 recommend
       path: '/',
-      component: Index
+      redirect: '/recommend'
     },
     {
       path: '/recommend',
@@ -39,11 +41,27 @@ export default new Router({
     },
     {
       path: '/rank',
-      component: Rank
+      component: Rank,
+      children: [
+        {
+          path: ':id',
+          component: RankDetail
+        }
+      ]
     },
     {
       path: '/search',
-      component: Search
+      component: Search,
+      children: [
+        {
+          path: 'singer/:id',
+          component: SingerDetail
+        },
+        {
+          path: 'list/:id',
+          component: MusicList
+        }
+      ]
     },
     {
       path: '/user',
