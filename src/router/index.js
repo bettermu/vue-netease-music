@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import Index from '@/components/Index'
-import Recommend from '@/components/recommend/recommend'
-import Singer from '@/components/singer/singer'
-import Rank from '@/components/rank/rank'
-import Search from '@/components/search/search'
-import User from '@/components/user/user'
-import MusicList from '@/components/music-list/music-list'
-import SingerDetail from '@/components/singer-detail/singer-detail'
-import RankDetail from 'cpnts/rank-detail/rank-detail'
+import Recommend from 'cp/recommend/recommend'
+import Singer from 'cp/singer/singer'
+import Rank from 'cp/rank/rank'
+import Search from 'cp/search/search'
+import User from 'cp/user/user'
+import MusicList from 'cp/music-list/music-list'
+import SingerDetail from 'cp/singer-detail/singer-detail'
+import RankDetail from 'cp/rank-detail/rank-detail'
 
 Vue.use(Router)
 

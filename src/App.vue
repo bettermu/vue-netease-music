@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <m-header></m-header>
     <router-view/>
   </div>
 </template>
 
 <script>
+import MHeader from 'cp/m-header/m-header'
 export default {
-  name: 'App'
+  data () {
+
+  },
+
+  components: {
+    MHeader
+  }
 }
 </script>
 

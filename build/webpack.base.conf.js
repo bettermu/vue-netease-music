@@ -38,7 +38,7 @@ module.exports = {
       '@': resolve('src'),
       //路径别名配置
       'common': resolve('src/common'),
-      'cpnts': resolve('src/components'),
+      'cp': resolve('src/components'),
       'base': resolve('src/base'),
       'api': resolve('src/api')
     }
