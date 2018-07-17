@@ -1,5 +1,8 @@
 <template>
-  <div>歌手页</div>
+  <div>
+    <div>歌手页</div>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
