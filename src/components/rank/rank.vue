@@ -1,5 +1,5 @@
 <template>
-  <div>我是recommend</div>
+  <div>我是rank</div>
 </template>
 
 <script>

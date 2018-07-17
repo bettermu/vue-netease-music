@@ -1,5 +1,5 @@
 <template>
-  <div>我是recommend</div>
+  <div>搜索页面</div>
 </template>
 
 <script>
