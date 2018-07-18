@@ -1,17 +1,18 @@
 <template>
   <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src="../../common/image/default.jpg" alt="">
-        </div>
-        <div class="swiper-slide">
-          <img src="../../common/image/default.jpg" alt="">
-        </div>
-        <div class="swiper-slide">
-          <img src="../../common/image/default.jpg" alt="">
-        </div>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <img src="../../common/image/default.jpg" alt="">
+      </div>
+      <div class="swiper-slide">
+        <img src="../../common/image/default.jpg" alt="">
+      </div>
+      <div class="swiper-slide">
+        <img src="../../common/image/default.jpg" alt="">
       </div>
     </div>
+    <div class="swiper-pagination"></div>
+  </div>
 </template>
 
 <script>
@@ -20,13 +21,16 @@ export default {
   mounted () {
     const mySwiper = new Swiper('.swiper-container', {
       autoplay: true,
-      loop: true
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+      },
     })
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  @import 'swiper/dist/css/swiper.min.css';
+
 </style>
 

@@ -25,6 +25,7 @@ export default {
 
 <style lang="scss">
 @import 'common/scss/index.scss';
+@import 'swiper/dist/css/swiper.min.css';
 #app {
   position: fixed;
   top: 0;
