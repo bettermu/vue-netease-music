@@ -31,6 +31,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.swiper-slide {
+  img {
+    width:11.25rem;
+    height:5.15625rem;
+  }
+}
 </style>
 

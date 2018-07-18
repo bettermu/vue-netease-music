@@ -29,6 +29,7 @@ export default {
     font-weight:bold;
     color: $color-text-l;
     letter-spacing: 0.0938rem;
+    font-size:.5625rem;
   }
   .mine {
     position:absolute;
