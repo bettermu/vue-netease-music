@@ -4,6 +4,9 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+// 引入移动端自适应库flexible
+import 'lib-flexible/flexible'
+
 // 引入全局状态库
 // import store from './store'
 

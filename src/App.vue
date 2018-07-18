@@ -19,6 +19,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import 'common/scss/index.scss';
 #app {
   position: fixed;
   top: 0;
