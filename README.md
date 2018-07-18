@@ -16,6 +16,7 @@
   * better-scroll 移动端页面场景滚动插件，用户体验更加顺畅
   * scss css预编译处理器
   * ES6 新一代js语法
+  * flexible 移动端自适应库
 
 ## 后端
   * Node.js 利用 Express 搭建的本地测试服务器
