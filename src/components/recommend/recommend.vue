@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div>我是recommend</div>
     <slider :banner="banner"></slider>
     <router-view></router-view>
   </div>

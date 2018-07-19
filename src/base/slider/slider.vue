@@ -1,14 +1,8 @@
 <template>
   <div class="swiper-container">
     <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="../../common/image/default.jpg" alt="">
-      </div>
-      <div class="swiper-slide">
-        <img src="../../common/image/default.jpg" alt="">
-      </div>
-      <div class="swiper-slide">
-        <img src="../../common/image/default.jpg" alt="">
+      <div v-for="item in banner" :key="item.id" class="swiper-slide">
+        <img :src="item.picUrl" alt="">
       </div>
     </div>
     <div class="swiper-pagination"></div>
@@ -18,10 +12,14 @@
 <script>
 import Swiper from 'swiper'
 export default {
+  props:['banner'],
+
   mounted () {
+
     const mySwiper = new Swiper('.swiper-container', {
       autoplay: true,
       loop: true,
+      observer:true,
       pagination: {
         el: '.swiper-pagination',
       },
@@ -33,8 +31,8 @@ export default {
 <style lang="scss" scoped>
 .swiper-slide {
   img {
-    width:11.25rem;
-    height:5.15625rem;
+    width:100%;
+    //height:5.15625rem;
   }
 }
 </style>
