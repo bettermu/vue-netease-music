@@ -21,7 +21,7 @@ export default {
     //是否派发滚动事件
     listenScroll: {
       type: Boolean,
-      default: false
+      default: true
     },
     data: {
       type: Array,
