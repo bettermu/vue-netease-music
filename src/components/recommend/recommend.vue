@@ -21,6 +21,18 @@
             </li>
           </ul>
         </div>
+        <div class="recommend-song">
+          <h1 class="title">推荐歌曲</h1>
+          <ul>
+            <li class="item" v-for="item in recommendMusic" :key="item.id">
+              <div class="icon">
+                <img v-lazy="item.image" alt="">
+              </div>
+              <p class="text">{{item.name}}</p>
+              <p class="singer">{{item.singer}}</p>
+            </li>
+          </ul>
+        </div>
       </div>
 
     </scroll>
@@ -31,7 +43,8 @@
 <script>
 import Scroll from 'base/scroll/scroll'
 import Slider from 'base/slider/slider'
-import { getBanner, getRecommendList } from 'api/recommend'
+import { getBanner, getRecommendList, getRecommendMusic } from 'api/recommend'
+import { createRecommendSong } from 'common/js/song'
 import { ERR_OK } from 'common/js/config'
 
 export default {
@@ -39,13 +52,16 @@ export default {
     return {
       banner: [],
       playList: [],
+      recommendMusic: [],
     }
   },
   created() {
     this._getBanner()
     this._getRecommendList()
+    this._getRecommendMusic()
   },
   methods: {
+    //获取banner图
     _getBanner() {
       getBanner().then((res) => {
         if (res.status === ERR_OK) {
@@ -56,6 +72,7 @@ export default {
 
       })
     },
+    //获取推荐歌单列表
     _getRecommendList() {
       getRecommendList().then(res => {
         if (res.status === ERR_OK) {
@@ -63,6 +80,23 @@ export default {
           this.playList = res.data.result
         } else {
           console.error('getRecommend获取失败')
+        }
+      })
+    },
+    //获取推荐歌曲列表
+    _getRecommendMusic() {
+      getRecommendMusic().then(res => {
+        if (res.status === ERR_OK) {
+          //这里回过来的数据格式，不是直接的，需要做一层转换
+          // this.recommendList=res.data.result.slice(0,8)
+
+          let list = res.data.result.map((item) => {
+            return createRecommendSong(item)
+          })
+          console.log(list)
+          this.recommendMusic=list.slice(0,9)
+        } else {
+          console.error('getRecommendMusic失败')
         }
       })
     },
@@ -93,8 +127,8 @@ export default {
       width: 100%;
       text-align: center;
       .title {
-        height: 2.03125rem;
-        line-height: 2.03125rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
         padding-left: 1.5%;
         text-align: left;
         font-size: $font-size-medium;
@@ -150,6 +184,54 @@ export default {
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
           }
+        }
+      }
+    }
+    .recommend-song {
+      margin-top: --0.625rem;
+      box-sizing: border-box;
+      width: 100%;
+      text-align: center;
+      .title {
+        height: 1.5rem;
+        line-height: 1.5rem;
+        padding-left: 1.5%;
+        text-align: left;
+        font-size: $font-size-medium;
+        font-weight: bold;
+        color: $color-text;
+      }
+      .item {
+        display: inline-block;
+        position: relative;
+        box-sizing: border-box;
+        width: 33%;
+        padding: 0 1%;
+        .icon {
+          position: relative;
+          display: inline-block;
+          width: 100%;
+          margin-bottom: .15625rem;
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: .09375rem;
+          }
+        }
+        .text {
+          line-height: .5rem;
+          text-align: left;
+          height: .5rem;
+          @include no-wrap();
+          font-size: $font-size-small;
+        }
+        .singer {
+          line-height: .5rem;
+          margin-bottom: .3125rem;
+          text-align: left;
+          @include no-wrap();
+          font-size: $font-size-small;
+          color: $color-text-g;
         }
       }
     }
