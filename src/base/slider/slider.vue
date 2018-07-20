@@ -12,14 +12,15 @@
 <script>
 import Swiper from 'swiper'
 export default {
-  props:['banner'],
+  props: ['banner'],
 
-  mounted () {
+  mounted() {
 
     const mySwiper = new Swiper('.swiper-container', {
       autoplay: true,
       loop: true,
-      observer:true,
+      lazy: true,
+      observer: true,
       pagination: {
         el: '.swiper-pagination',
       },
@@ -29,10 +30,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.swiper-slide {
-  img {
-    width:100%;
-    //height:5.15625rem;
+.swiper-wrapper {
+  height:5.15625rem;
+  width:100%;
+  .swiper-slide {
+    img {
+      width: 100%;
+      height: 100%;;
+    }
   }
 }
 </style>
