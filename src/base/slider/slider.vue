@@ -20,11 +20,9 @@ export default {
   },
 
   mounted() {
-
     const mySwiper = new Swiper('.swiper-container', {
       autoplay: true,
       loop: true,
-      lazy: true,
       observer: true,
       pagination: {
         el: '.swiper-pagination',
