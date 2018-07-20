@@ -12,7 +12,12 @@
 <script>
 import Swiper from 'swiper'
 export default {
-  props: ['banner'],
+  props: {
+    banner: {
+      type: Array,
+      defalut: null
+    }
+  },
 
   mounted() {
 
@@ -31,12 +36,13 @@ export default {
 
 <style lang="scss" scoped>
 .swiper-wrapper {
-  height:5.15625rem;
-  width:100%;
+  height: 5.15625rem;
+  width: 100%;
   .swiper-slide {
     img {
       width: 100%;
-      height: 100%;;
+      height: 100%;
+      ;
     }
   }
 }
