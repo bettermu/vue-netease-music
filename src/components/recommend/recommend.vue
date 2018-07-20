@@ -6,7 +6,7 @@
         <div class="recommend-list">
           <h1 class="title">推荐歌单</h1>
           <ul>
-            <li class="item" v-for="item in playList" :key="item.id">
+            <li class="item" v-for="item in playList" :key="item.id" @click="selectList(item)">
               <div class="icon">
                 <div class="gradients"></div>
                 <img v-lazy="item.picUrl">
@@ -34,7 +34,6 @@
           </ul>
         </div>
       </div>
-
     </scroll>
     <router-view></router-view>
   </div>
@@ -94,17 +93,24 @@ export default {
             return createRecommendSong(item)
           })
           console.log(list)
-          this.recommendMusic=list.slice(0,9)
+          this.recommendMusic = list.slice(0, 9)
         } else {
           console.error('getRecommendMusic失败')
         }
       })
     },
+    //选择歌单，进入音乐列表
+    selectList(item) {
+      this.$router.push({
+        path: `recommend/${item.id}`
+      })
+      console.log(item);
+    },
   },
   components: {
     Slider,
     Scroll
-  }
+  },
 }
 </script>
 

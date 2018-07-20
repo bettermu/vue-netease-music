@@ -1,7 +1,7 @@
 <template>
   <div class="swiper-container">
     <div class="swiper-wrapper">
-      <div v-for="item in banner" :key="item.id" class="swiper-slide">
+      <div v-for="item in banner" :key="item.id" class="swiper-slide" @click.stop="selectBanner(item)">
         <img :src="item.picUrl" alt="">
       </div>
     </div>
@@ -16,6 +16,17 @@ export default {
     banner: {
       type: Array,
       defalut: null
+    }
+  },
+  methods: {
+    selectBanner(item) {
+      let regHttp=/^http/
+      let regSong=/\/song\?id/
+      //如果是网页
+      if(regHttp.test(item.url)){
+        window.open(item.url)
+      }
+
     }
   },
 
