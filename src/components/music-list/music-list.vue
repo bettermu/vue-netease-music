@@ -1,6 +1,5 @@
 <template>
   <transition name="slide" mode="out-in">
-
     <div class="music-list">这是音乐列表{{$route.params.id}}</div>
   </transition>
 </template>
