@@ -75,7 +75,7 @@ export default {
     _getRecommendList() {
       getRecommendList().then(res => {
         if (res.status === ERR_OK) {
-          console.log(res.data)
+          //console.log(res.data)
           this.playList = res.data.result
         } else {
           console.error('getRecommend获取失败')
@@ -92,7 +92,7 @@ export default {
           let list = res.data.result.map((item) => {
             return createRecommendSong(item)
           })
-          console.log(list)
+          //console.log(list)
           this.recommendMusic = list.slice(0, 9)
         } else {
           console.error('getRecommendMusic失败')
@@ -104,7 +104,7 @@ export default {
       this.$router.push({
         path: `recommend/${item.id}`
       })
-      console.log(item);
+      //console.log(item);
     },
   },
   components: {
