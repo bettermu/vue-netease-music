@@ -40,47 +40,47 @@
 </template>
 
 <script>
-import Scroll from 'base/scroll/scroll'
-import Slider from 'base/slider/slider'
-import { getBanner, getRecommendList, getRecommendMusic } from 'api/recommend'
-import { createRecommendSong } from 'common/js/song'
-import { ERR_OK } from 'common/js/config'
+import Scroll from "base/scroll/scroll";
+import Slider from "base/slider/slider";
+import { getBanner, getRecommendList, getRecommendMusic } from "api/recommend";
+import { createRecommendSong } from "common/js/song";
+import { ERR_OK } from "common/js/config";
+import { mapMutations, mapActions } from "vuex";
 
 export default {
   data() {
     return {
       banner: [],
       playList: [],
-      recommendMusic: [],
-    }
+      recommendMusic: []
+    };
   },
   created() {
-    this._getBanner()
-    this._getRecommendList()
-    this._getRecommendMusic()
+    this._getBanner();
+    this._getRecommendList();
+    this._getRecommendMusic();
   },
   methods: {
     //获取banner图
     _getBanner() {
-      getBanner().then((res) => {
+      getBanner().then(res => {
         if (res.status === ERR_OK) {
-          this.banner = res.data.banners
+          this.banner = res.data.banners;
         } else {
-          console.error('banner获取失败')
+          console.error("banner获取失败");
         }
-
-      })
+      });
     },
     //获取推荐歌单列表
     _getRecommendList() {
       getRecommendList().then(res => {
         if (res.status === ERR_OK) {
           //console.log(res.data)
-          this.playList = res.data.result
+          this.playList = res.data.result;
         } else {
-          console.error('getRecommend获取失败')
+          console.error("getRecommend获取失败");
         }
-      })
+      });
     },
     //获取推荐歌曲列表
     _getRecommendMusic() {
@@ -89,29 +89,34 @@ export default {
           //这里回过来的数据格式，不是直接的，需要做一层转换
           // this.recommendList=res.data.result.slice(0,8)
 
-          let list = res.data.result.map((item) => {
-            return createRecommendSong(item)
-          })
+          let list = res.data.result.map(item => {
+            return createRecommendSong(item);
+          });
           //console.log(list)
-          this.recommendMusic = list.slice(0, 9)
+          this.recommendMusic = list.slice(0, 9);
         } else {
-          console.error('getRecommendMusic失败')
+          console.error("getRecommendMusic失败");
         }
-      })
+      });
     },
     //选择歌单，进入音乐列表
     selectList(item) {
       this.$router.push({
-        path: `recommend/${item.id}`
-      })
+        path: `/recommend/${item.id}`
+      });
       //console.log(item);
+      //console.log(this.setMusicList)
+      this.setMusicList(item)
     },
+    ...mapMutations({
+      setMusicList:'SET_MUSIC_LIST'
+    })
   },
   components: {
     Slider,
     Scroll
-  },
-}
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -151,33 +156,36 @@ export default {
           position: relative;
           display: inline-block;
           width: 100%;
-          margin-bottom: .15625rem;
+          margin-bottom: 0.15625rem;
           .gradients {
             position: absolute;
             top: 0;
             width: 100%;
             height: 1.09375rem;
-            border-radius: .09375rem;
-            background: linear-gradient(rgba(109, 109, 109, .4), rgba(255, 255, 255, 0));
+            border-radius: 0.09375rem;
+            background: linear-gradient(
+              rgba(109, 109, 109, 0.4),
+              rgba(255, 255, 255, 0)
+            );
           }
           img {
             width: 100%;
             height: 100%;
-            border-radius: .09375rem;
+            border-radius: 0.09375rem;
           }
         }
         .play-count {
           position: absolute;
-          top: .15625rem;
-          right: .25rem;
+          top: 0.15625rem;
+          right: 0.25rem;
           font-size: $font-size-small-s;
           color: $color-text-l;
         }
         .text {
           float: left;
-          line-height: .5rem;
+          line-height: 0.5rem;
           text-align: left;
-          line-height: .5rem;
+          line-height: 0.5rem;
           overflow: hidden;
           margin-bottom: 10px;
           font-size: $font-size-small;
@@ -217,23 +225,23 @@ export default {
           position: relative;
           display: inline-block;
           width: 100%;
-          margin-bottom: .15625rem;
+          margin-bottom: 0.15625rem;
           img {
             width: 100%;
             height: 100%;
-            border-radius: .09375rem;
+            border-radius: 0.09375rem;
           }
         }
         .text {
-          line-height: .5rem;
+          line-height: 0.5rem;
           text-align: left;
-          height: .5rem;
+          height: 0.5rem;
           @include no-wrap();
           font-size: $font-size-small;
         }
         .singer {
-          line-height: .5rem;
-          margin-bottom: .3125rem;
+          line-height: 0.5rem;
+          margin-bottom: 0.3125rem;
           text-align: left;
           @include no-wrap();
           font-size: $font-size-small;

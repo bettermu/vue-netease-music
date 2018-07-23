@@ -5,41 +5,48 @@
 </template>
 
 <script>
-import Scroll from 'base/scroll/scroll'
-import SongList from 'base/song-list/song-list'
-import Loading from 'base/loading/loading'
-import {getRecommendListDetail} from 'api/recommend'
-import {ERR_OK} from 'common/js/config'
-import {createRecommendListSong} from 'common/js/song'
+import Scroll from "base/scroll/scroll";
+import SongList from "base/song-list/song-list";
+import Loading from "base/loading/loading";
+import { getRecommendListDetail } from "api/recommend";
+import { ERR_OK } from "common/js/config";
+import { createRecommendListSong } from "common/js/song";
+import { mapGetters } from "vuex";
 export default {
-  data (){
+  data() {
     return {
-      listDetail:[],
-      scrollY:0,
-      headerTitle:'歌单'
-    }
+      listDetail: [],
+      scrollY: 0,
+      headerTitle: "歌单"
+    };
   },
-  created (){
-
+  created() {
+    console.log(this.musicList.id)
+    this._getRecommendListDetail(this.musicList.id);
   },
-  methods:{
-    _getRecommendListDetail(id){
-      if(!id){
-        this.$router.push('/recommend')
-        return
+  computed:{
+    ...mapGetters(["musicList"])
+  },
+  methods: {
+    _getRecommendListDetail(id) {
+      //console.log(id)
+      if (!id) {
+        this.$router.push("/recommend");
+        return;
       }
       //请求
-      getRecommendListDetail(id).then((res)=>{
-        if(res.status === ERR_OK){
-          console.log(res.data.result)
+      getRecommendListDetail(id).then(res => {
+        if (res.status === ERR_OK) {
+          console.log(res.data.playlist.tracks);
         }
-      })
+      });
     },
+
   },
   components: {
     Loading
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

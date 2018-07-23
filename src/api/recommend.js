@@ -20,7 +20,7 @@ export function getRecommendMusic() {
 }
 
 // 获取推荐音乐详情
-export function getRecommendListDetail() {
+export function getRecommendListDetail(id) {
   const url = HOST + `/playlist/detail?id=${id}`
   return axios.get(url)
 }
