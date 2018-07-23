@@ -77,5 +77,6 @@
 * 2018.7.23
   * 歌曲列表编写
   * 添加vuex 相关 action getter mutation state
+  * 音乐列表数据state测试
 
 
