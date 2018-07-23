@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 
 // 引入移动端自适应库flexible
 import 'lib-flexible/flexible'
@@ -30,6 +31,7 @@ fastclick.attach(document.body)
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
   // components: { App },
   // template: '<App/>'
