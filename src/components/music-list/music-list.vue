@@ -5,8 +5,37 @@
 </template>
 
 <script>
+import Scroll from 'base/scroll/scroll'
+import SongList from 'base/song-list/song-list'
 import Loading from 'base/loading/loading'
+import {getRecommendListDetail} from 'api/recommend'
+import {ERR_OK} from 'common/js/config'
+import {createRecommendListSong} from 'common/js/song'
 export default {
+  data (){
+    return {
+      listDetail:[],
+      scrollY:0,
+      headerTitle:'歌单'
+    }
+  },
+  created (){
+
+  },
+  methods:{
+    _getRecommendListDetail(id){
+      if(!id){
+        this.$router.push('/recommend')
+        return
+      }
+      //请求
+      getRecommendListDetail(id).then((res)=>{
+        if(res.status === ERR_OK){
+          console.log(res.data.result)
+        }
+      })
+    },
+  },
   components: {
     Loading
   }
@@ -18,7 +47,7 @@ export default {
 @import "~common/scss/mixin";
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 0.2s
+  transition: all 0.2s;
 }
 
 .slide-enter,
