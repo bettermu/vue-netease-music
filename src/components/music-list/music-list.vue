@@ -1,7 +1,14 @@
 <template>
   <transition name="slide" mode="out-in">
     <div class="music-list">
-      <div class="header" ref="header"></div>
+      <div class="header" ref="header">
+        <div class="back" @click="back">
+          <i class="fa fa-angle-left"></i>
+        </div>
+        <div class="text">
+          <h1 class="title">{{headerTitle}}</h1>
+        </div>
+      </div>
     </div>
   </transition>
 </template>
@@ -30,6 +37,11 @@ export default {
     ...mapGetters(["musicList"])
   },
   methods: {
+    //返回
+    back() {
+      this.$router.back();
+     },
+
     _getRecommendListDetail(id) {
       //console.log(id)
       if (!id) {
@@ -41,10 +53,10 @@ export default {
         if (res.status === ERR_OK) {
           console.log(res.data);
           this.listDetail = res.data.playlist.tracks.map(item => {
-            return createRecommendListSong(item)
-          })
+            return createRecommendListSong(item);
+          });
         } else {
-          console.error('getRecommendListDetail 获取失败')
+          console.error("getRecommendListDetail 获取失败");
         }
       });
     }
@@ -77,6 +89,30 @@ export default {
   bottom: 0;
   right: 0;
   background: $color-background;
+  .header {
+    position:fixed;
+    top:0;
+    width:100%;
+    height:1.375rem;
+    color:#fff;
+    z-index:100;
+    .back {
+      position:absolute;
+      top:0;
+      left:.125rem;
+      .fa-angle-left {
+        padding:.15625rem .3125rem;
+        font-size:.9375rem;
+      }
+    }
+    .text {
+      position:absolute;
+      left:1.1875rem;
+      line-height:1.375rem;
+      font-size: $font-size-medium-x;
+      @include no-wrap()
+    }
+  }
 }
 </style>
 
