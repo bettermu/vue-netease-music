@@ -1,6 +1,8 @@
 <template>
   <transition name="slide" mode="out-in">
-    <div class="music-list">这是音乐列表{{$route.params.id}}</div>
+    <div class="music-list">
+      <div class="header" ref="header"></div>
+    </div>
   </transition>
 </template>
 
@@ -39,10 +41,10 @@ export default {
         if (res.status === ERR_OK) {
           console.log(res.data);
           this.listDetail = res.data.playlist.tracks.map(item => {
-            //console.log(item)
             return createRecommendListSong(item)
-          });
-          console.log(this.listDetail)
+          })
+        } else {
+          console.error('getRecommendListDetail 获取失败')
         }
       });
     }
