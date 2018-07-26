@@ -9,6 +9,9 @@
           <h1 class="title">{{headerTitle}}</h1>
         </div>
       </div>
+      <div v-show="!listDetail.length" class="loading-content">
+        <loading></loading>
+      </div>
     </div>
   </transition>
 </template>
