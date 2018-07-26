@@ -21,10 +21,10 @@ export default {
     };
   },
   created() {
-    console.log(this.musicList.id)
+    console.log(this.musicList.id);
     this._getRecommendListDetail(this.musicList.id);
   },
-  computed:{
+  computed: {
     ...mapGetters(["musicList"])
   },
   methods: {
@@ -37,11 +37,15 @@ export default {
       //请求
       getRecommendListDetail(id).then(res => {
         if (res.status === ERR_OK) {
-          console.log(res.data.playlist.tracks);
+          console.log(res.data);
+          this.listDetail = res.data.playlist.tracks.map(item => {
+            //console.log(item)
+            return createRecommendListSong(item)
+          });
+          console.log(this.listDetail)
         }
       });
-    },
-
+    }
   },
   components: {
     Loading
