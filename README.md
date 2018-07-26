@@ -79,4 +79,6 @@
   * 添加vuex 相关 action getter mutation state
   * 音乐列表数据state测试
 
+* 2018.7.26
+  * 歌曲列表数据格式转换
 
