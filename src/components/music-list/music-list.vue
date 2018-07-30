@@ -9,7 +9,13 @@
           <h1 class="title">{{headerTitle}}</h1>
         </div>
       </div>
-      <div class="music-list-wrapper">
+      <scroll class="list"
+      @scroll="scroll"
+      :probe-type="probeType"
+      :listen-scroll="listenScroll"
+      :data="listDetail"
+      ref="list">
+        <div class="music-list-wrapper">
         <div class="bg-image" ref="bgImage">
           <div class="filter"></div>
           <div class="text">
@@ -29,6 +35,8 @@
           <song-list></song-list>
         </div>
       </div>
+      </scroll>
+
       <div v-show="!listDetail.length" class="loading-content">
         <loading></loading>
       </div>
@@ -53,8 +61,10 @@ export default {
     };
   },
   created() {
-    console.log(this.musicList.id);
+    //console.log(this.musicList.id);
     this._getRecommendListDetail(this.musicList.id);
+    this.probeType = 3;
+    this.listenScroll = true;
   },
   computed: {
     ...mapGetters(["musicList"])
@@ -63,7 +73,7 @@ export default {
     //返回
     back() {
       this.$router.back();
-     },
+    },
 
     _getRecommendListDetail(id) {
       //console.log(id)
@@ -115,28 +125,112 @@ export default {
   right: 0;
   background: $color-background;
   .header {
-    position:fixed;
-    top:0;
-    width:100%;
-    height:1.375rem;
-    color:#fff;
-    z-index:100;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 1.375rem;
+    color: #fff;
+    z-index: 100;
     .back {
-      position:absolute;
-      top:0;
-      left:.125rem;
+      position: absolute;
+      top: 0;
+      left: 0.125rem;
       .fa-angle-left {
-        padding:.15625rem .3125rem;
-        font-size:.9375rem;
+        padding: 0.15625rem 0.3125rem;
+        font-size: 0.9375rem;
       }
     }
     .text {
-      position:absolute;
-      left:1.1875rem;
-      line-height:1.375rem;
+      position: absolute;
+      left: 1.1875rem;
+      line-height: 1.375rem;
       font-size: $font-size-medium-x;
-      @include no-wrap()
+      @include no-wrap();
     }
+  }
+  .list {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background: $color-background;
+    .music-list-wrapper {
+      .bg-image {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-top: 75%;
+        transform-origin: top;
+        background-size: cover;
+        background-position: 0 30%;
+        .filter {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #000;
+          opacity: 0.2;
+        }
+        .text {
+          position: absolute;
+          width: 80%;
+          height: 1.25rem;
+          bottom: 1.5625rem;
+          left: 0.46875rem;
+          color: #fff;
+          .play-count {
+            position: absolute;
+            bottom: -0.5rem;
+            font-size: $font-size-small;
+          }
+          .list-title {
+            position: absolute;
+            bottom: 0;
+            font-size: $font-size-medium-x;
+            line-height: 0.5625rem;
+            font-weight: bold;
+            letter-spacing: 0.03125rem;
+          }
+        }
+      }
+      .song-list-wrapper {
+        padding: 1.28125rem 0 0.625rem 0;
+        border-radius: 0.3125rem;
+        position: relative;
+        top: -0.625rem;
+        background: $color-background;
+        .sequence-play {
+          position: absolute;
+          // left: 8;
+          top: 0px;
+          display: flex;
+          align-items: center;
+          width: 100%;
+          height: 1.25rem;
+          padding-left: 0.5rem;
+          border-bottom: 0.03125rem solid rgb(228, 228, 228);
+          .iconfont {
+            font-size: 0.5625rem;
+            color: $color-text;
+            padding-right: 0.4375rem;
+          }
+          .text {
+            font-size: $font-size-medium-x;
+          }
+          .count {
+            font-size: $font-size-medium;
+            color: $color-text-g;
+          }
+        }
+      }
+    }
+  }
+  .loading-content {
+    position: fixed;
+    width: 100%;
+    top: 70%;
+    transform: translateY(-50%);
   }
 }
 </style>
