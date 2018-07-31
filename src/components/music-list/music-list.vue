@@ -67,6 +67,19 @@ export default {
     this.listenScroll = true;
   },
   computed: {
+    playCount() {
+      if (!this.musicList.playCount) {
+        return;
+      }
+      if (this.musicList.playCount < 1e5) {
+        return Math.floor(this.musicList.playCount);
+      } else {
+        return Math.floor(this.musicList.playCount / 10000) + "万";
+      }
+    },
+    title() {
+      return this.musicList.name;
+    },
     ...mapGetters(["musicList"])
   },
   methods: {
