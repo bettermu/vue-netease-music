@@ -32,7 +32,7 @@
             <span class="text">播放全部</span>
             <span class="count">(共{{listDetail.length}}首)</span>
           </div>
-          <song-list></song-list>
+          <song-list :songs="listDetail"></song-list>
         </div>
       </div>
       </scroll>
