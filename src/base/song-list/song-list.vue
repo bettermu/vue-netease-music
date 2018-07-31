@@ -5,7 +5,7 @@
         <p class="count">{{index+1}}</p>
         <div class="content">
           <h2 class="name">{{song.name}}</h2>
-          <p class="desc">{{song.singer}}</p>
+          <p class="desc">{{getDesc(song)}}</p>
         </div>
       </li>
     </ul>
@@ -15,15 +15,22 @@
 <script>
 export default {
   props: {
-    songs:{
+    songs: {
       type: Array
     }
+  },
+  methods: {
+    getDesc(song) {
+      if (song.aliaName) {
+        return `${song.singer}-${song.aliaName}`
+      } else {
+        return `${song.singer}`
+      }
+    }
   }
-
-}
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>
 
