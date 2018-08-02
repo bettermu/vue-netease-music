@@ -16,7 +16,7 @@
       :data="listDetail"
       ref="list">
         <div class="music-list-wrapper">
-        <div class="bg-image" ref="bgImage">
+        <div class="bg-image" :style="bgStyle" ref="bgImage">
           <div class="filter"></div>
           <div class="text">
             <h2 class="list-title">{{title}}</h2>
@@ -52,6 +52,9 @@ import { getRecommendListDetail } from "api/recommend";
 import { ERR_OK } from "common/js/config";
 import { createRecommendListSong } from "common/js/song";
 import { mapGetters } from "vuex";
+
+const RESERVED_HEIGHT = 44;
+
 export default {
   data() {
     return {
@@ -66,6 +69,11 @@ export default {
     this.probeType = 3;
     this.listenScroll = true;
   },
+  mounted() {
+    //获取图片元素高度
+    this.imageHeight = this.$refs.bgImage.clientHeight;
+    this.minTranslateY = -this.imageHeight + RESERVED_HEIGHT;
+  },
   computed: {
     playCount() {
       if (!this.musicList.playCount) {
@@ -77,6 +85,9 @@ export default {
         return Math.floor(this.musicList.playCount / 10000) + "万";
       }
     },
+    bgStyle() {
+      return `background-image:url(${this.musicList.picUrl})`;
+    },
     title() {
       return this.musicList.name;
     },
@@ -86,6 +97,12 @@ export default {
     //返回
     back() {
       this.$router.back();
+    },
+
+    //滚动监听
+    scroll(pos) {
+      //获取滚动距离
+      this.scrollY = pos.y;
     },
 
     _getRecommendListDetail(id) {
@@ -105,6 +122,25 @@ export default {
           console.error("getRecommendListDetail 获取失败");
         }
       });
+    }
+  },
+  //监听
+  watch:{
+    //监听滚动距离变量
+    scrollY(newY){
+      //透明度变化百分比
+      const percent=Math.abs(newY/this.imageHeight)
+      if(newY<(this.minTranslateY+RESERVED_HEIGHT-20)){
+        this.headerTitle=this.musicList.name
+      }else{
+        this.headerTitle='歌单'
+      }
+
+      if(newY<0){
+        this.$refs.header.style.background=`rgba(212, 68, 57, ${percent})`
+      }else{
+        this.$refs.header.style.background = `rgba(212, 68, 57, 0)`
+      }
     }
   },
   components: {
