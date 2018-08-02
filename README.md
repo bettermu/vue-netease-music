@@ -91,4 +91,7 @@
   * song-list结构编写
   * song-list样式完善
 
+* 2018.8.2
+  * music-list滚动标题栏交互效果实现
+
 
