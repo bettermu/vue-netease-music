@@ -2,7 +2,7 @@
   <div class="rank" ref="rank">
     <scroll class="toplist" ref="scroll">
       <ul>
-        <li class="item" v-for="item in yunTopList" :key="item.id">
+        <li class="item" v-for="item in yunTopList" :key="item.id" @click="selectItem(item)">
           <div class="icon">
             <img v-lazy="item.coverImgUrl">
           </div>
@@ -41,6 +41,13 @@ export default {
     this._getTopList();
   },
   methods: {
+    //跳转排行详细
+    selectItem(item) {
+      this.$router.push({
+        path: `/rank/${item.id}`
+      });
+      this.setTopList(item);
+    },
     //获取top列表
     _getTopList() {
       for (let i = 0; i < YUNMUSIC_TOP.length; i++) {
@@ -56,7 +63,10 @@ export default {
           this.showLoading = false;
         }
       }
-    }
+    },
+    ...mapMutations({
+      setTopList: "SET_TOP_LIST"
+    })
   },
   components: {
     Scroll,
