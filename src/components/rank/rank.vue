@@ -52,7 +52,7 @@ export default {
     _getTopList() {
       for (let i = 0; i < YUNMUSIC_TOP.length; i++) {
         getTop(YUNMUSIC_TOP[i]).then(res => {
-          console.log(res);
+          //console.log(res);
           let list = res.data.playlist;
           //只取前三
           list.top = res.data.playlist.tracks.slice(0, 3);

@@ -9,23 +9,23 @@
 </template>
 
 <script>
-import MHeader from 'cp/m-header/m-header'
-import Tab from 'cp/tab/tab'
+import MHeader from "cp/m-header/m-header";
+import Tab from "cp/tab/tab";
 export default {
-  data () {
-
+  data() {
+    return {};
   },
 
   components: {
     MHeader,
     Tab
   }
-}
+};
 </script>
 
 <style lang="scss">
-@import 'common/scss/index.scss';
-@import 'swiper/dist/css/swiper.min.css';
+@import "common/scss/index.scss";
+@import "swiper/dist/css/swiper.min.css";
 #app {
   position: fixed;
   top: 0;
