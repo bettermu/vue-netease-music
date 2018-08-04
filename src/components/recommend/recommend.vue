@@ -2,7 +2,17 @@
   <div class="recommend">
     <scroll class="recommend-content" ref="scroll" :data="playList">
       <div>
-        <slider :banner="banner"></slider>
+
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div v-for="item in banner" :key="item.id" class="swiper-slide" @click.stop="selectBanner(item)">
+                <img :src="item.picUrl" alt="">
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+
+
         <div class="recommend-list">
           <h1 class="title">推荐歌单</h1>
           <ul>
@@ -40,8 +50,9 @@
 </template>
 
 <script>
+import Swiper from "swiper";
 import Scroll from "base/scroll/scroll";
-import Slider from "base/slider/slider";
+//import Slider from "base/slider/slider";
 import { getBanner, getRecommendList, getRecommendMusic } from "api/recommend";
 import { createRecommendSong } from "common/js/song";
 import { ERR_OK } from "common/js/config";
@@ -60,12 +71,23 @@ export default {
     this._getRecommendList();
     this._getRecommendMusic();
   },
+  mounted() {},
   methods: {
     //获取banner图
     _getBanner() {
       getBanner().then(res => {
         if (res.status === ERR_OK) {
           this.banner = res.data.banners;
+          this.$nextTick(() => {
+            const mySwiper = new Swiper(".swiper-container", {
+              autoplay: true,
+              loop: true,
+              observer: true,
+              pagination: {
+                el: ".swiper-pagination"
+              }
+            });
+          });
         } else {
           console.error("banner获取失败");
         }
@@ -106,15 +128,15 @@ export default {
       });
       //console.log(item);
       //console.log(this.setMusicList)
-      this.setMusicList(item)
+      this.setMusicList(item);
     },
     ...mapMutations({
-      setMusicList:'SET_MUSIC_LIST'
+      setMusicList: "SET_MUSIC_LIST"
     })
   },
   components: {
-    Slider,
-    Scroll
+    //Slider,
+    Scroll,
   }
 };
 </script>
@@ -132,6 +154,16 @@ export default {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    .swiper-wrapper {
+      height: 5.15625rem;
+      width: 100%;
+      .swiper-slide {
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
     .recommend-list {
       position: relative;
       box-sizing: border-box;

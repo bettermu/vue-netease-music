@@ -1,11 +1,6 @@
 <template>
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div v-for="item in banner" :key="item.id" class="swiper-slide" @click.stop="selectBanner(item)">
-        <img :src="item.picUrl" alt="">
-      </div>
-    </div>
-    <div class="swiper-pagination"></div>
+  <div>
+    <slot></slot>
   </div>
 </template>
 
