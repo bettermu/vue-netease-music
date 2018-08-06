@@ -14,9 +14,9 @@
           <div class="filter"></div>
           <div class="text">
             <h2 class="list-title">
-              {{title}}
+              {{333}}
             </h2>
-            <p class="update">{{updateTime}}</p>
+            <p class="update">{{333}}</p>
           </div>
         </div>
         <div class="song-list-wrapper">
@@ -81,6 +81,11 @@ export default {
       this.listDetail = ret;
       console.log(ret);
     }
+  },
+  components: {
+    SongList,
+    Scroll,
+    Loading
   }
 };
 </script>
