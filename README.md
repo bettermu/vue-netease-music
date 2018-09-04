@@ -117,5 +117,15 @@
   * 歌手页listview组件编写
   * dom操作相关工具函数编写
 
+* 2018.9.4
+  * 最近工作太忙，这个音乐app就没怎么写了
+  * 之前的github好像有点问题，半成品的效果图，没办法上传，导致一直拖拖，本来想上传的，刚好今天试了下，连gif都能顺利上传了，废话不多说，先上图，看看几个页面的效果。
+  * ![](https://github.com/bettermu/blog-picture-store/blob/master/vue-music/1.gif?raw=true)
+
+  * ![](https://github.com/bettermu/blog-picture-store/blob/master/vue-music/1.png?raw=true)
+
+  * ![](https://github.com/bettermu/blog-picture-store/blob/master/vue-music/3.png?raw=true)
+
+
 
 
